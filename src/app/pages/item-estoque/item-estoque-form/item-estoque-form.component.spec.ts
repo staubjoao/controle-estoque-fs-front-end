@@ -1,19 +1,18 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
+import { ItemEstoqueFormComponent } from './item-estoque-form.component';
 
-import { ItemFormComponent } from './item-form.component';
-
-describe('ItemFormComponent', () => {
-  let component: ItemFormComponent;
-  let fixture: ComponentFixture<ItemFormComponent>;
+describe('ItemEstoqueFormComponent', () => {
+  let component: ItemEstoqueFormComponent;
+  let fixture: ComponentFixture<ItemEstoqueFormComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ItemFormComponent ],
+      declarations: [ ItemEstoqueFormComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ItemFormComponent);
+    fixture = TestBed.createComponent(ItemEstoqueFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

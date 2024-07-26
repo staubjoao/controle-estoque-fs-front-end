@@ -3,24 +3,24 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Locais do estoque</ion-title>
+    <ion-title>Itens no estoque</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Locais do Estoque</ion-title>
+      <ion-title size="large">Itens no estoque</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <ion-list>
-    <ion-item *ngFor="let local of locaisEstoque">
-      <ion-label>{{ local.descricao }}</ion-label>
-      <ion-button slot="end" color="primary" (click)="alterarLocal(local)">
+    <ion-item *ngFor="let item of itemEstoqueLista">
+      <ion-label>{{ item.descricao }} - {{ item.quantidade }} {{ item.grandeza }}</ion-label>
+      <ion-button slot="end" color="primary" (click)="alterarLocal(item)">
         <ion-icon name="create"></ion-icon>
       </ion-button>
-      <ion-button slot="end" color="danger" (click)="excluirLocal(local.id!)">
+      <ion-button slot="end" color="danger" (click)="excluirLocal(item.id!)">
         <ion-icon name="trash"></ion-icon>
       </ion-button>
     </ion-item>

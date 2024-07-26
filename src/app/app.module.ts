@@ -9,11 +9,13 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LocalEstoqueFormComponent } from './pages/local-estoque/local-estoque-form/local-estoque-form.component';
+import { ItemEstoqueFormComponent } from './pages/item-estoque/item-estoque-form/item-estoque-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LocalEstoqueFormComponent,
+    ItemEstoqueFormComponent,
   ],
   imports: [
     BrowserModule,

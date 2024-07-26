@@ -13,7 +13,7 @@ const routes: Routes = [
   },
   {
     path: 'item-list',
-    loadChildren: () => import('./pages/item/item-list/item-list.module').then( m => m.ItemListPageModule)
+    loadChildren: () => import('./pages/item-estoque/item-estoque-list/item-estoque-list.module').then( m => m.ItemEstoqueListPageModule)
   },
   {
     path: 'receita-list',
