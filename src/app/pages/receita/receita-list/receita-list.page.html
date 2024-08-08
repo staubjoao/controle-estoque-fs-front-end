@@ -16,13 +16,13 @@
 
   <ion-list>
     <ion-item *ngFor="let receita of receitaLista">
-      <ion-label>{{ receita.descricao }}</ion-label>
-      <!-- <ion-button slot="end" color="primary" (click)="alterarLocal(item)">
+      <ion-label>{{ receita.receita.descricao }} com {{receita.itens.length}} itens</ion-label>
+      <ion-button slot="end" color="primary" (click)="alterarReceita(receita)">
         <ion-icon name="create"></ion-icon>
       </ion-button>
-      <ion-button slot="end" color="danger" (click)="excluirLocal(item.id!)">
+      <ion-button slot="end" color="danger" (click)="excluirReceita(receita.receita.id)">
         <ion-icon name="trash"></ion-icon>
-      </ion-button> -->
+      </ion-button>
     </ion-item>
   </ion-list>
 

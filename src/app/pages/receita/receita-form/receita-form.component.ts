@@ -20,7 +20,7 @@ enum Grandeza {
 })
 export class ReceitaFormComponent implements OnInit {
 
-  @Input() receita?: Receita;
+  @Input() receita?: any;
 
   novaReceita: Receita = {
     descricao: '',
@@ -46,7 +46,9 @@ export class ReceitaFormComponent implements OnInit {
   ngOnInit() {
     if (this.receita) {
       console.log('Receita recebida:', this.receita);
-      this.novaReceita = { ...this.receita };
+      this.novaReceita.itens = this.receita.itens;
+      this.novaReceita.descricao = this.receita.receita.descricao;
+      this.novaReceita.id = this.receita.receita.id;
     }
 
     this.itemEstoqueService.getAll().subscribe(itens => {
@@ -84,14 +86,14 @@ export class ReceitaFormComponent implements OnInit {
   async salvar() {
     try {
       if (this.novaReceita?.id) {
-        // await this.receitaService.put(this.novoItemEstoque).toPromise();
-        // const toast = await this.toastController.create({
-        //   message: 'Local de estoque alterado com sucesso!',
-        //   duration: 2000,
-        //   color: 'success'
-        // });
-        // await toast.present();
-        // this.dismiss();
+        await this.receitaService.put(this.novaReceita).toPromise();
+        const toast = await this.toastController.create({
+          message: 'Receita alterado com sucesso!',
+          duration: 2000,
+          color: 'success'
+        });
+        await toast.present();
+        this.dismiss();
       } else {
         await this.receitaService.post(this.novaReceita).toPromise();
         const toast = await this.toastController.create({

@@ -58,7 +58,7 @@ export class ItemEstoqueFormComponent  implements OnInit {
       if (this.novoItemEstoque?.id) {
         await this.itemEstoqueService.put(this.novoItemEstoque).toPromise();
         const toast = await this.toastController.create({
-          message: 'Local de estoque alterado com sucesso!',
+          message: 'Item de estoque alterado com sucesso!',
           duration: 2000,
           color: 'success'
         });
@@ -67,7 +67,7 @@ export class ItemEstoqueFormComponent  implements OnInit {
       } else {
         await this.itemEstoqueService.post(this.novoItemEstoque).toPromise();
         const toast = await this.toastController.create({
-          message: 'Local de estoque salvo com sucesso!',
+          message: 'Item de estoque salvo com sucesso!',
           duration: 2000,
           color: 'success'
         });
@@ -77,7 +77,7 @@ export class ItemEstoqueFormComponent  implements OnInit {
     } catch (error) {
       console.error(error);
       const toast = await this.toastController.create({
-        message: this.itemEstoque?.id ? 'Ocorreu um erro ao alterar o local de estoque.' : 'Ocorreu um erro ao salvar o local de estoque.',
+        message: this.itemEstoque?.id ? 'Ocorreu um erro ao alterar o item de estoque.' : 'Ocorreu um erro ao salvar o item de estoque.',
         duration: 2000,
         color: 'danger'
       });

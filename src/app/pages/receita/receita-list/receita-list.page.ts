@@ -1,6 +1,6 @@
 import { ReceitaService } from './../../../services/receita.service';
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { ReceitaFormComponent } from '../receita-form/receita-form.component';
 
 @Component({
@@ -11,7 +11,8 @@ import { ReceitaFormComponent } from '../receita-form/receita-form.component';
 export class ReceitaListPage implements OnInit {
 
   constructor(private modalController: ModalController,
-    private receitaService: ReceitaService
+    private receitaService: ReceitaService,
+    private toastController: ToastController
   ) { }
 
   receitaLista: any[] = [];
@@ -41,6 +42,42 @@ export class ReceitaListPage implements OnInit {
     });
 
     return await modal.present();
+  }
+
+  async alterarReceita(receita: any) {
+    const modal = await this.modalController.create({
+      component: ReceitaFormComponent,
+      componentProps: {
+        receita: receita
+      }
+    });
+
+    modal.onDidDismiss().then(() => {
+      this.findAllReceitas();
+    });
+
+    return await modal.present();
+  }
+
+  async excluirReceita(receitaId: number) {
+    try {
+        await this.receitaService.delete(receitaId).toPromise();
+        this.findAllReceitas();
+        const toast = await this.toastController.create({
+          message: 'Receita excluida com sucesso!',
+          duration: 2000,
+          color: 'success'
+        });
+        await toast.present();
+    } catch (error) {
+      console.error(error);
+      const toast = await this.toastController.create({
+        message: 'Ocorreu um erro ao excluir a receita.',
+        duration: 2000,
+        color: 'danger'
+      });
+      await toast.present();
+    }
   }
 
 }

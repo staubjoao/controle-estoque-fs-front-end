@@ -20,4 +20,16 @@ export class ReceitaService {
     return this.http.post<any>(this.apiUrl, receita);
   }
 
+  public put(receita: Receita): Observable<any> {
+    let body = {
+      "descricao" : receita.descricao,
+      "itens": receita.itens
+    }
+    return this.http.put<any>(this.apiUrl + "/" + receita.id, body);
+  }
+
+  public delete(receitaId: number): Observable<any> {
+    return this.http.delete<any>(this.apiUrl + "/" + receitaId);
+  }
+
 }

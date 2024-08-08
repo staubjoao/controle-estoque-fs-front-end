@@ -1,7 +1,7 @@
 import { ItemEstoqueService } from 'src/app/services/item-estoque.service';
 import { ItemEstoque } from './../../../models/item-estoque';
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { ItemEstoqueFormComponent } from '../item-estoque-form/item-estoque-form.component';
 
 @Component({
@@ -14,7 +14,8 @@ export class ItemEstoqueListPage implements OnInit {
   itemEstoqueLista: ItemEstoque[] = [];
 
   constructor(private itemEstoqueService: ItemEstoqueService,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private toastController: ToastController
   ) { }
 
   ngOnInit() {
@@ -44,38 +45,38 @@ export class ItemEstoqueListPage implements OnInit {
   }
 
   async alterarLocal(item: ItemEstoque) {
-    // const modal = await this.modalController.create({
-    //   component: LocalEstoqueFormComponent,
-    //   componentProps: {
-    //     local: local
-    //   }
-    // });
+    const modal = await this.modalController.create({
+      component: ItemEstoqueFormComponent,
+      componentProps: {
+        itemEstoque: item
+      }
+    });
 
-    // modal.onDidDismiss().then(() => {
-    //   this.findAllLocaisEstoque();
-    // });
+    modal.onDidDismiss().then(() => {
+      this.findAllLocaisEstoque();
+    });
 
-    // return await modal.present();
+    return await modal.present();
   }
 
   async excluirLocal(itemId: number) {
-    // try {
-    //     await this.localEstoqueService.delete(localId).toPromise();
-    //     this.findAllLocaisEstoque();
-    //     const toast = await this.toastController.create({
-    //       message: 'Local de estoque excluido com sucesso!',
-    //       duration: 2000,
-    //       color: 'success'
-    //     });
-    //     await toast.present();
-    // } catch (error) {
-    //   console.error(error);
-    //   const toast = await this.toastController.create({
-    //     message: 'Ocorreu um erro ao excluir o local de estoque.',
-    //     duration: 2000,
-    //     color: 'danger'
-    //   });
-    //   await toast.present();
-    // }
+    try {
+        await this.itemEstoqueService.delete(itemId).toPromise();
+        this.findAllLocaisEstoque();
+        const toast = await this.toastController.create({
+          message: 'Item de estoque excluido com sucesso!',
+          duration: 2000,
+          color: 'success'
+        });
+        await toast.present();
+    } catch (error) {
+      console.error(error);
+      const toast = await this.toastController.create({
+        message: 'Ocorreu um erro ao excluir o item de estoque.',
+        duration: 2000,
+        color: 'danger'
+      });
+      await toast.present();
+    }
   }
 }
