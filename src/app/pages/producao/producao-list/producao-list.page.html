@@ -10,7 +10,25 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">producao-list</ion-title>
+      <ion-title size="large">Locais do Estoque</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <ion-list>
+    <ion-item *ngFor="let producao of producoes">
+      <ion-label>{{producao.id}} - {{ producao.receita?.descricao }}</ion-label>
+      <!-- <ion-button slot="end" color="primary" (click)="alterarLocal(producao)">
+        <ion-icon name="create"></ion-icon>
+      </ion-button>
+      <ion-button slot="end" color="danger" (click)="excluirLocal(producao.id!)">
+        <ion-icon name="trash"></ion-icon>
+      </ion-button> -->
+    </ion-item>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="abrirCadastro()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
