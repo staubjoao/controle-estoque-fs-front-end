@@ -35,4 +35,13 @@ export class ItemEstoqueService {
     const urlFinal = this.apiUrl + "/" + itemEstoque.id;
     return this.http.put<ItemEstoque>(urlFinal, itemEstoque);
   }
+
+  public atualizaQuantidade(idItemEstoque: number, quantidade: number, grandeza: string): Observable<any> {
+    let body = {
+      "idItemEstoque": idItemEstoque,
+      "quantidade": quantidade,
+      "grandeza": grandeza
+    }
+    return this.http.post<any>(this.apiUrl + "/atualiza-estoque", body);
+  }
 }

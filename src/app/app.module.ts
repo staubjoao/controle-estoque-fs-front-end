@@ -12,6 +12,7 @@ import { LocalEstoqueFormComponent } from './pages/local-estoque/local-estoque-f
 import { ItemEstoqueFormComponent } from './pages/item-estoque/item-estoque-form/item-estoque-form.component';
 import { ReceitaFormComponent } from './pages/receita/receita-form/receita-form.component';
 import { ProducaoFormComponent } from './pages/producao/producao-form/producao-form.component';
+import { ItemEstoqueQuantidadeFormComponent } from './pages/item-estoque/item-estoque-quantidade-form/item-estoque-quantidade-form.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ProducaoFormComponent } from './pages/producao/producao-form/producao-f
     LocalEstoqueFormComponent,
     ItemEstoqueFormComponent,
     ReceitaFormComponent,
-    ProducaoFormComponent
+    ProducaoFormComponent,
+    ItemEstoqueQuantidadeFormComponent
   ],
   imports: [
     BrowserModule,
